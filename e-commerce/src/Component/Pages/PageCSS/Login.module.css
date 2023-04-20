@@ -1,0 +1,39 @@
+
+.maincontainer {
+  text-align: center;
+  margin-top: 270px;
+}
+
+.flexcontainer {
+  display: flex;
+  justify-content: center;
+}
+
+.formcontainer {
+  border: 1px solid black;
+  box-shadow: 3px 4px 5px 5px #000000ac;
+  width: 500px;
+  padding: 30px;
+  background-color: white;
+  border-radius: 15px;
+}
+
+.loginform {
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+}
+
+.navlink {
+  padding: 5px;
+  text-decoration: none;
+  color: blueviolet;
+  font-weight: bold;
+  font-size: 18px;
+}
+.loginform p {
+  font-weight: bold;
+}
+.error{
+  color: red;
+}
