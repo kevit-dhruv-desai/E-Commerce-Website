@@ -1,22 +1,71 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState ={
-  cart:[],
-  quantity:0,
-  totalQuantity:0,
-  totalPrice:0,
-}
+const initialState = {
+  cart: [],
+  totalQuantity: 0,
+  totalPrice: 0,
+};
 
 export const cardSlice = createSlice({
-  name:"cart",
+  name: "cart",
   initialState,
   reducers: {
-    addToCart: (state,actions) => {
-      state.cart.push(actions.payload)
+    addToCart: (state, actions) => {
+      const tempProduct = { ...actions.payload, quantity: 1 };
+      const itemIndex = state.cart.findIndex(
+        (item) => item.id === actions.payload.id
+      );
+      if (itemIndex >= 0) {
+        state.cart[itemIndex].quantity += 1;
+      } else {
+        state.cart.push(tempProduct);
+      }
+      state.totalQuantity += 1;
+      state.totalPrice += actions.payload.price;
+      state.totalPrice = Number(state.totalPrice.toFixed(2));
+    },
+
+    increaseQuantity: (state, action) => {
+      const itemIndex = state.cart.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      state.cart[itemIndex].quantity += 1;
+      state.totalQuantity += 1;
+
+      state.totalPrice += action.payload.price;
+      state.totalPrice = Number(state.totalPrice.toFixed(2));
+    },
+
+    decreaseQuantity: (state, action) => {
+      const itemIndex = state.cart.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      if (state.cart[itemIndex].quantity > 1) {
+        state.cart[itemIndex].quantity -= 1;
+        state.totalQuantity -= 1;
+        state.totalPrice -= action.payload.price;
+      } else {
+        state.totalQuantity -= 1;
+        state.totalPrice -=
+          action.payload.price * state.cart[itemIndex].quantity;
+        state.cart.splice(itemIndex, 1);
+      }
+      state.totalPrice = Number(state.totalPrice.toFixed(2));
+    },
+
+    removeFromCart: (state, action) => {
+      const removedItem = state.cart.find(
+        (item) => item.id === action.payload.id
+      );
+      state.totalQuantity -= removedItem.quantity;
+      state.totalPrice -= removedItem.price * removedItem.quantity;
+      state.totalPrice = Number(state.totalPrice.toFixed(2));
+      state.cart = state.cart.filter((item) => item.id !== action.payload.id);
     },
   },
-})
+});
 
-export const { addToCart } = cardSlice.actions
+export const { addToCart, increaseQuantity, decreaseQuantity, removeFromCart } =
+  cardSlice.actions;
 
-export default cardSlice.reducer
+export default cardSlice.reducer;

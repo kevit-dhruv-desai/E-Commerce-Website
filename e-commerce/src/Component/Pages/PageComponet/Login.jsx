@@ -42,11 +42,16 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    let getemail = localStorage.getItem("email")
-    console.log(getemail)
-    let getpassword = localStorage.getItem("password")
-    if (getemail === email && getpassword === password) {
-      return navigate("/productlist")
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const user = users.find(
+      (user) => user.email === email && user.password === password
+    );
+
+    if (user) {
+      navigate("/productlist");
+    } else {
+      alert("Invalid email or password");
     }
   };
 

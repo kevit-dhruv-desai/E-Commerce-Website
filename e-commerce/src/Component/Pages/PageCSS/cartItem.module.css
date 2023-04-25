@@ -1,0 +1,91 @@
+.heading{
+    font-size: 45px;
+}
+.cartcontainer{
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid black; */
+    background-color:rgba(24, 64, 49, 0.99);
+    border-radius: 20px;
+    padding: 40px;
+    font-size: 20px;
+    width: 800px;
+}
+.cartitem{
+    display: flex;
+    gap: 35px;
+}
+.cartinfo{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.section{
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    row-gap: 30px;
+    /* border: 1px solid rgb(5, 25, 245); */
+    background-color:rgb(9, 24, 28);
+    width:55%;
+    height: 600px;
+    overflow: scroll;
+    position:fixed;
+    top: 100px;
+    right: 17px;
+    border-radius: 20px;
+    align-items: center;
+    color: white;
+}
+.checkoutinfo{
+    border: 1px solid black;
+    background-color:rgba(89, 64, 64, 0.97);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 350px;
+    align-items: center;
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 20px;
+
+}
+.checkoutinfo h1{
+    font-size: 35px;
+}
+.btn{
+font-size: 22px;
+border: 1px solid black;
+border-radius: 5px;
+text-align: center;
+color: #f2f2f2;
+background-color: #3c3c3c
+
+}
+.btncontent{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.quantitycontent{
+    display: flex;
+    gap: 30px;
+    text-align: center;
+    
+}
+.quantitycontent button{
+    height: 35px;
+    width: 35px;
+    font-size: 22px;
+    font-weight: bold;
+}
+.orderbtn{
+    font-size: 25px;
+    background-color: rgba(10, 7, 7, 0.865);
+    color: white;
+    border-radius: 10px;
+    border: 1px double black;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+}

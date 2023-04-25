@@ -4,8 +4,10 @@ import InputControl from "../../SubComponent/Specific Component/inputControl";
 import profile from "../../../Images/userprofile.avif";
 import loader from "../../../Images/loader.gif";
 import menu from "../../../Images/menu.webp";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../Featue/CartSlice";
+import CartItem from "./cartItem";
+import { NavLink } from "react-router-dom";
 
 const ProductList = () => {
   const [productData, setProductData] = useState([]);
@@ -13,8 +15,10 @@ const ProductList = () => {
   const [dataHide, setDataHide] = useState(true);
   const [search, setSearch] = useState("");
   const [showMenu, setShowMenu] = useState(false);
+  const [showCart, setShowCart] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const dispatch = useDispatch();
+  const totalQuantity = useSelector((state) => state.allCart.totalQuantity);
 
   useEffect(() => {
     async function productDataList() {
@@ -23,7 +27,6 @@ const ProductList = () => {
       const Data = await response.json();
       setProductData(Data);
       setIsLoading(false);
-      console.log(Data);
       return Data;
     }
     productDataList();
@@ -66,6 +69,11 @@ const ProductList = () => {
   function menuShow() {
     return setShowMenu(!showMenu);
   }
+
+  function cartShow() {
+    return setShowCart(!showCart);
+  }
+
   function handleCategoryClick(category) {
     setSelectedCategory(category);
   }
@@ -75,7 +83,7 @@ const ProductList = () => {
       <div>
         <header>
           <nav className={styles.navbar}>
-            <img src={menu} alt="" height="40px" onClick={menuShow} />
+            <button className={styles.menubtn}><img src={menu} alt="" height="40px" onClick={menuShow}/></button>
             <h1 className={styles.header}>The Shop</h1>
             <div className={styles.usermanage}>
               <InputControl
@@ -83,7 +91,7 @@ const ProductList = () => {
                 className={styles.inputfield}
                 onChange={ChangeHandler}
               />
-              <img src={profile} alt="" height="50px" />
+             <button style={{height:"54px"}}><img src={profile} alt="" height="50px" /></button>
               <img
                 src="https://cdn.iconscout.com/icon/premium/png-512-thumb/cart-41-95778.png?f=avif&w=256"
                 alt=""
@@ -91,7 +99,9 @@ const ProductList = () => {
               />
             </div>
           </nav>
-          <button className={styles.store}>1</button>
+          <button className={styles.store} onClick={cartShow}>
+            {totalQuantity}
+          </button>
         </header>
       </div>
 
@@ -105,11 +115,13 @@ const ProductList = () => {
               <div key={item.id}>
                 <section className={styles.itemsection}>
                   <div>
+                    <NavLink to={`/productdetails/${item.id}`}>
                     <img
                       src={item.image}
                       alt="productimage"
                       className={styles.image}
                     />
+                    </NavLink>
                   </div>
                   <div className={styles.productinfo}>
                     <h1 className={styles.category}>{item.category}</h1>
@@ -149,6 +161,7 @@ const ProductList = () => {
           </ul>
         </div>
       )}
+      {showCart && <CartItem />}
     </>
   );
 };

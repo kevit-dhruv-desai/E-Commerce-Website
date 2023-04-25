@@ -46,7 +46,7 @@ const SignUp = () => {
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
-    console.log(password)
+    console.log(password);
     if (password.length === 0) {
       setPasswordValid(false);
     }
@@ -58,9 +58,22 @@ const SignUp = () => {
     event.preventDefault();
     if (nameValid && emailValid && passwordValid) {
       alert("Your are successfully register");
-      localStorage.setItem("email", email)
-      localStorage.setItem("password", password)
-}
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const user = {
+        email: email,
+        password: password,
+      };
+      const existingUser = users.find((u) =>  u.email === email && u.password === password);
+      if (existingUser) {
+        return;
+      } else {
+        users.push(user);
+      }
+      localStorage.setItem("users", JSON.stringify(users));
+      setName("");
+      setEmail("");
+      setPassword("");
+    }
   };
 
   return (
