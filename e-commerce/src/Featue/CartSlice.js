@@ -62,10 +62,16 @@ export const cardSlice = createSlice({
       state.totalPrice = Number(state.totalPrice.toFixed(2));
       state.cart = state.cart.filter((item) => item.id !== action.payload.id);
     },
+
+    clearCart: (state) => {
+      state.cart = [];
+      state.totalQuantity = 0;
+      state.totalPrice = 0;
+    },
   },
 });
 
-export const { addToCart, increaseQuantity, decreaseQuantity, removeFromCart } =
+export const { addToCart, increaseQuantity, decreaseQuantity, removeFromCart, clearCart } =
   cardSlice.actions;
 
 export default cardSlice.reducer;

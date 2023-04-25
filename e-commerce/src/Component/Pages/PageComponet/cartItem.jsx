@@ -1,8 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../PageCSS/cartItem.module.css";
-import { increaseQuantity, removeFromCart } from "../../../Featue/CartSlice";
+import {
+  increaseQuantity,
+  removeFromCart,
+} from "../../../Featue/CartSlice";
 import { decreaseQuantity } from "../../../Featue/CartSlice";
-import remove from '../../../Images/remove.png'
+import remove from "../../../Images/remove.png";
 
 const CartItem = () => {
   const data = useSelector((state) => state.allCart.cart);
@@ -10,6 +13,10 @@ const CartItem = () => {
   const totalPrice = useSelector((state) => state.allCart.totalPrice);
   const dispatch = useDispatch();
   console.log(data);
+
+ function handlePlaceOrder(){
+    window.location.href = "/checkout"
+  }
 
   return (
     <>
@@ -37,14 +44,25 @@ const CartItem = () => {
                     <button onClick={() => dispatch(decreaseQuantity(items))}>
                       -
                     </button>
-                    <button onClick={()=>{dispatch(removeFromCart(items))}}><img src={remove} alt="remove" height="30px" width="30px"/></button>
+                    <button
+                      onClick={() => {
+                        dispatch(removeFromCart(items));
+                      }}
+                    >
+                      <img
+                        src={remove}
+                        alt="remove"
+                        height="30px"
+                        width="30px"
+                      />
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         ))}
-        <div className={styles.checkoutinfo}>
+       {data.length > 0 && (<div className={styles.checkoutinfo}>
           <h1>Summary</h1>
           <div className={styles.btncontent}>
             <p>
@@ -54,9 +72,11 @@ const CartItem = () => {
             <p>
               Total Amount: <span className={styles.btn}>{totalPrice}</span>
             </p>
-            <button className={styles.orderbtn}>Order Checkout</button>
+            <button className={styles.orderbtn} onClick={handlePlaceOrder}>
+              Order Checkout
+            </button>
           </div>
-        </div>
+        </div>)}
       </section>
     </>
   );

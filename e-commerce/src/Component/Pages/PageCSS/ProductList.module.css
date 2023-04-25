@@ -31,11 +31,12 @@
     font-size: 20px;
     border: 1px solid rgb(37, 37, 37);
     font-weight: bold;
-    background-color: rgba(214, 17, 228, 0.801);
+    background-color:rgba(10, 7, 7, 0.865);
     width: 150px;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 252, 252);
     height: 35px;
     border-radius: 15px;
+    cursor: pointer;
 }
 .price{
     border: 1px solid black;
@@ -43,7 +44,7 @@
     height: 25px;
     width: 107px;
     border-radius: 20px;
-    background-color: rgb(83, 237, 167);
+    background-color: rgba(255, 255, 255, 0.867);
     font-weight: bold;
 }
 .category{
@@ -86,6 +87,7 @@
     right: 50px;
     background-color: whitesmoke;
     font-weight: bold;
+    cursor: pointer;
 }
 .loader{
   position: fixed;
@@ -132,4 +134,5 @@ ul{
   width: 42px;
   height: 42px;
   text-align: center;
+  cursor: pointer;
 }

@@ -6,7 +6,6 @@ import loader from "../../../Images/loader.gif";
 import menu from "../../../Images/menu.webp";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../Featue/CartSlice";
-import CartItem from "./cartItem";
 import { NavLink } from "react-router-dom";
 
 const ProductList = () => {
@@ -32,6 +31,19 @@ const ProductList = () => {
     productDataList();
     setTimeout(productDataList, 2000);
   }, []);
+
+  // useEffect(() => {
+  //   window.history.pushState(null,window.location.pathname);
+  //   window.addEventListener('popstate', BackButton);
+  //   return () => {
+  //     window.removeEventListener('popstate', BackButton);
+  //   };
+  // }, []);
+
+  // const BackButton = (e) => {
+  //   e.preventDefault();
+  //   window.history.pushState(null,window.location.pathname);
+  // };
 
   let timer = useRef();
   const ChangeHandler = (event) => {
@@ -83,7 +95,9 @@ const ProductList = () => {
       <div>
         <header>
           <nav className={styles.navbar}>
-            <button className={styles.menubtn}><img src={menu} alt="" height="40px" onClick={menuShow}/></button>
+            <button className={styles.menubtn}>
+              <img src={menu} alt="" height="40px" onClick={menuShow} />
+            </button>
             <h1 className={styles.header}>The Shop</h1>
             <div className={styles.usermanage}>
               <InputControl
@@ -91,7 +105,9 @@ const ProductList = () => {
                 className={styles.inputfield}
                 onChange={ChangeHandler}
               />
-             <button style={{height:"54px"}}><img src={profile} alt="" height="50px" /></button>
+              <button style={{ height: "54px", cursor:"pointer" }}>
+                <img src={profile} alt="" height="50px" />
+              </button>
               <img
                 src="https://cdn.iconscout.com/icon/premium/png-512-thumb/cart-41-95778.png?f=avif&w=256"
                 alt=""
@@ -99,9 +115,11 @@ const ProductList = () => {
               />
             </div>
           </nav>
-          <button className={styles.store} onClick={cartShow}>
-            {totalQuantity}
-          </button>
+          <NavLink to="/cartitem">
+            <button className={styles.store} onClick={cartShow}>
+              {totalQuantity}
+            </button>
+          </NavLink>
         </header>
       </div>
 
@@ -116,11 +134,11 @@ const ProductList = () => {
                 <section className={styles.itemsection}>
                   <div>
                     <NavLink to={`/productdetails/${item.id}`}>
-                    <img
-                      src={item.image}
-                      alt="productimage"
-                      className={styles.image}
-                    />
+                      <img
+                        src={item.image}
+                        alt="productimage"
+                        className={styles.image}
+                      />
                     </NavLink>
                   </div>
                   <div className={styles.productinfo}>
@@ -161,7 +179,6 @@ const ProductList = () => {
           </ul>
         </div>
       )}
-      {showCart && <CartItem />}
     </>
   );
 };

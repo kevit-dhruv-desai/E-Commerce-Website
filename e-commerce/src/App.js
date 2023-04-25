@@ -6,6 +6,9 @@ import ProductList from "./Component/Pages/PageComponet/ProductList";
 import store from './Store/Store'
 import {Provider} from 'react-redux'
 import ProductDetails from "./Component/Pages/PageComponet/productDetails";
+import CartItem from "./Component/Pages/PageComponet/cartItem";
+import CheckoutPage from "./Component/Pages/PageComponet/CheckoutPage";
+
 
 
 function App() {
@@ -14,6 +17,8 @@ function App() {
     { path: "signup", element: <SignUp /> },
     { path: "ProductList", element: <ProductList/> },
     { path: "productdetails/:id", element: <ProductDetails/> },
+    { path: "cartitem", element: <CartItem/> },
+    { path: "checkout", element: <CheckoutPage/> },
   ]);
   return <Provider store={store}> <RouterProvider router={router} /></Provider>;
 }
