@@ -1,6 +1,117 @@
+/* Desktop layout */
 .usersection {
   display: flex;
-  /* justify-content:space-evenly; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 968px;
+  min-height: 968px;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 700px;
+  min-height: 700px;
+  border-radius: 10px;
+  padding: 30px;
+  background-color: rgba(148, 201, 206, 0.73);
+  gap: 25px;
+}
+
+table {
+  text-align: left;
+  height: 250px;
+  width: 400px;
+  text-align: center;
+}
+
+.userbtn {
+  display: flex;
+  min-width: 300px;
+  justify-content: space-evenly;
+  gap: 25px;
+}
+
+.userbtn button {
+  width: 200px;
+  height: 45px;
+  background-color: #222020f0;
+  color: white;
+  font-size: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.editform {
+  background-color: rgba(253, 253, 253, 0.988);
+  padding: 30px;
+  width: 1000px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  text-align: center;
+}
+
+.forminput {
+  display: grid;
+  grid-template-columns: auto auto;
+  row-gap: 35px;
+  column-gap: 20px;
+}
+
+.formcontainer {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0%;
+  left: 408px;
+}
+
+@media only screen and (max-width: 768px) {
+  .usersection {
+    min-height: auto;
+   
+  }
+
+  .userinfo {
+    width: 90%;
+    min-height: auto;
+    padding: 20px;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  .userbtn {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .userbtn button {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .editform {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .formcontainer {
+    left: 0%;
+  }
+}
+
+
+
+
+/* .usersection {
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -41,7 +152,7 @@ table {
   text-align: center;
 }
 .editform {
-  /* border: 1px solid black; */
+ 
   background-color: rgba(253, 253, 253, 0.988);
   padding: 30px;
   width: 1000px;
@@ -49,7 +160,6 @@ table {
   display: flex;
   flex-direction: column;
   row-gap: 40px;
-  /* height: 400px; */
   text-align: center;
 }
 .forminput {
@@ -65,5 +175,5 @@ table {
   position: absolute;
   top:0%;
   left:408px;
-}
+} */
 
