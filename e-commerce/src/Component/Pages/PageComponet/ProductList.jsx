@@ -1,12 +1,10 @@
 import { useEffect, useState, useRef, useMemo } from "react";
 import styles from "../PageCSS/ProductList.module.css";
-import InputControl from "../../SubComponent/Specific Component/inputControl";
-import profile from "../../../Images/userprofile.avif";
 import loader from "../../../Images/loader.gif";
-import menu from "../../../Images/menu.webp";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../../../Featue/CartSlice";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import Navbar from "../../SubComponent/Specific Component/Navbar";
 
 const ProductList = () => {
   const [productData, setProductData] = useState([]);
@@ -17,7 +15,7 @@ const ProductList = () => {
   const [showCart, setShowCart] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const dispatch = useDispatch();
-  const totalQuantity = useSelector((state) => state.allCart.totalQuantity);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function productDataList() {
@@ -32,18 +30,20 @@ const ProductList = () => {
     setTimeout(productDataList, 2000);
   }, []);
 
-  // useEffect(() => {
-  //   window.history.pushState(null,window.location.pathname);
-  //   window.addEventListener('popstate', BackButton);
-  //   return () => {
-  //     window.removeEventListener('popstate', BackButton);
-  //   };
-  // }, []);
+  useEffect(() => {
+    const handleBackButton = (event) => {
+      event.preventDefault();
 
-  // const BackButton = (e) => {
-  //   e.preventDefault();
-  //   window.history.pushState(null,window.location.pathname);
-  // };
+      window.location.href = "/";
+    };
+
+    window.history.pushState(null, window.location.href);
+    window.addEventListener("popstate", handleBackButton);
+
+    return () => {
+      window.removeEventListener("popstate", handleBackButton);
+    };
+  }, []);
 
   let timer = useRef();
   const ChangeHandler = (event) => {
@@ -90,39 +90,18 @@ const ProductList = () => {
     setSelectedCategory(category);
   }
 
+  function logoutHandler() {
+    navigate("/");
+  }
+
   return (
     <>
-      <div>
-        <header>
-          <nav className={styles.navbar}>
-            <button className={styles.menubtn}>
-              <img src={menu} alt="" height="40px" onClick={menuShow} />
-            </button>
-            <h1 className={styles.header}>The Shop</h1>
-            <div className={styles.usermanage}>
-              <InputControl
-                placeholder="Search"
-                className={styles.inputfield}
-                onChange={ChangeHandler}
-              />
-              <button style={{ height: "54px", cursor:"pointer" }}>
-                <img src={profile} alt="" height="50px" />
-              </button>
-              <img
-                src="https://cdn.iconscout.com/icon/premium/png-512-thumb/cart-41-95778.png?f=avif&w=256"
-                alt=""
-                height="50px"
-              />
-            </div>
-          </nav>
-          <NavLink to="/cartitem">
-            <button className={styles.store} onClick={cartShow}>
-              {totalQuantity}
-            </button>
-          </NavLink>
-        </header>
-      </div>
-
+      <Navbar
+        menuShow={menuShow}
+        ChangeHandler={ChangeHandler}
+        logoutHandler={logoutHandler}
+        cartShow={cartShow}
+      />
       {dataHide && (
         <div className={styles.mainproductcontent}>
           {productFilterData.length === 0 && (

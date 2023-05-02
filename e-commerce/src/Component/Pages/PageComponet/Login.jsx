@@ -1,16 +1,21 @@
 import InputControl from "../../SubComponent/Specific Component/inputControl";
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import styles from "../PageCSS/Login.module.css";
 import Button from "../../SubComponent/Specific Component/Button";
 import { NavLink,useNavigate} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {emailInfo, passwordInfo} from "../../../Featue/loginslice";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
   const [emailValid, setEmailValid] = useState(true);
-  const [password, setPassword] = useState("");
+  // const [password, setPassword] = useState("");
   const [passwordValid, setPasswordValid] = useState(true);
+  const navigate = useNavigate();
+ const email = useSelector((state)=> state.logininfo.email);
+ const password = useSelector((state)=> state.logininfo.password);
+ const dispatch = useDispatch();
 
-  const navigate = useNavigate()
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -23,7 +28,7 @@ const Login = () => {
   };
 
   const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+    dispatch(emailInfo(event.target.value));
     if (email.length === 0) {
       setEmailValid(false);
     }
@@ -32,7 +37,7 @@ const Login = () => {
   };
 
   const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
+    dispatch(passwordInfo(event.target.value));
     if (password.length === 0) {
       setPasswordValid(false);
     }
@@ -49,10 +54,25 @@ const Login = () => {
     );
 
     if (user) {
+      localStorage.setItem("email", email)
+      localStorage.setItem("password", password)
       navigate("/productlist");
     } else {
       alert("Invalid email or password");
     }
+  };
+
+  useEffect(() => {
+    window.history.pushState(null,window.location.pathname);
+    window.addEventListener('popstate', BackButton);
+    return () => {
+      window.removeEventListener('popstate', BackButton);
+    };
+  }, []);
+
+  const BackButton = (e) => {
+    e.preventDefault();
+    window.history.pushState(null,window.location.pathname);
   };
 
   return (
@@ -73,6 +93,7 @@ const Login = () => {
               placeholder="Enter password"
               value={password}
               onChange={handlePasswordChange}
+              type="password"
             />
             {!passwordValid && (
               <div className={styles.error}>Invalid password</div>

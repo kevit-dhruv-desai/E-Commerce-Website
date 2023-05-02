@@ -1,0 +1,50 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding: 20px 40px;
+    font-size: 30px;
+    background-color:#000;
+    color: white;
+    position:fixed;
+    top: 0;
+    width: 100%;
+}
+.menubtn{
+    border: 1px solid white;
+    border-radius: 30%;
+    width: 42px;
+    height: 42px;
+    text-align: center;
+    cursor: pointer;
+  }
+.header{
+    font-size: 50px
+}
+.usermanage{
+    display: flex;
+    justify-content:flex-end;
+    column-gap: 30px;
+    width: 50%;
+}
+.inputfield{
+    width: 500px;
+    height: 40px;
+    margin-top: 5px;
+}
+.store{
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    position: fixed;
+    top:21px;
+    right: 124px;
+    background-color: whitesmoke;
+    font-weight: bold;
+    cursor: pointer;
+}
+.logoutbtn{
+    border-radius: 50%;
+    height: 45px;
+    background-color: white;
+    }

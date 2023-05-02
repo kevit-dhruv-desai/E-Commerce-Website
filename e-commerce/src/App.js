@@ -8,6 +8,7 @@ import {Provider} from 'react-redux'
 import ProductDetails from "./Component/Pages/PageComponet/productDetails";
 import CartItem from "./Component/Pages/PageComponet/cartItem";
 import CheckoutPage from "./Component/Pages/PageComponet/CheckoutPage";
+import UserProfile from "./Component/Pages/PageComponet/UserProfile";
 
 
 
@@ -19,6 +20,7 @@ function App() {
     { path: "productdetails/:id", element: <ProductDetails/> },
     { path: "cartitem", element: <CartItem/> },
     { path: "checkout", element: <CheckoutPage/> },
+    { path: "userprofile", element: <UserProfile/> },
   ]);
   return <Provider store={store}> <RouterProvider router={router} /></Provider>;
 }

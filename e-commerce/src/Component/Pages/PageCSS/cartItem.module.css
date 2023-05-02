@@ -83,3 +83,9 @@ background-color: #3c3c3c
     padding: 10px;
     font-weight: bold;
 }
+.nocart{
+    font-size: 35px;
+    position: fixed;
+    top: 484px;
+    color: red;
+}

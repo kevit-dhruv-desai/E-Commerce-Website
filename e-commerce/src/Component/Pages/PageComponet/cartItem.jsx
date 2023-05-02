@@ -77,6 +77,7 @@ const CartItem = () => {
             </button>
           </div>
         </div>)}
+        {data.length === 0 && (<p className={styles.nocart}>No Cart</p>)}
       </section>
     </>
   );

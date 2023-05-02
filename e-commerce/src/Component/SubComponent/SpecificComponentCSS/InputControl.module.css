@@ -12,7 +12,7 @@
 
 .inputcontainer input {
   border-radius: 5px;
-  border: 1px solid #eee;
+  border: 1px solid rgb(35, 34, 34);
   outline: none;
   padding: 8px 15px;
   color: #000;
