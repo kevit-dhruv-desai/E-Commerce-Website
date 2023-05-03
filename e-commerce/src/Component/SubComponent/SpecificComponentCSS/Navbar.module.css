@@ -1,5 +1,86 @@
-
 .navbar {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  background-color: rgb(20, 20, 20);
+  padding: 5px;
+}
+.btn {
+  width: 250px;
+  background-color: rgb(23, 70, 117);
+  text-align: center;
+  font-size: 25px;
+  color: white;
+  padding: 8px;
+}
+.btn:hover{
+  transform: scale(1.1);
+}
+.header {
+  color: white;
+  font-size: 45px;
+}
+.usermanage {
+  display: flex;
+  column-gap: 15px;
+}
+.cartbtn{
+  width: 250px;
+  background-color: rgb(23, 70, 117);
+  text-align: center;
+  font-size: 25px;
+  color: white;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  column-gap: 10px;
+}
+.cartbtn:hover{
+  transform: scale(1.1);
+}
+.totalquantity{
+  border: 1px solid black;
+  border-radius: 50%;
+  width: 30px;
+  background-color: rgb(59, 27, 27);
+}
+@media only screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .btn, .cartbtn, .usermanage {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .btn, .cartbtn, .usermanage {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+@media only screen and (max-width: 365px) {
+  .usermanage{
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+}
+
+
+
+
+/* .navbar {
     display: flex;
     justify-content: space-between;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -32,12 +113,6 @@
     width: 50%;
   }
   
-  .inputfield {
-    width: 100%;
-    height: 2.5rem;
-    margin-top: 5px;
-  }
-  
   .store {
     width: 1.5rem;
     height: 1.5rem;
@@ -54,9 +129,9 @@
     border-radius: 50%;
     height: 3rem;
     background-color: white;
-  }
-  
-  @media (max-width: 768px) {
+  } */
+
+/* @media (max-width: 768px) {
     .navbar {
       padding: 1rem;
     }
@@ -78,4 +153,4 @@
       right: 2rem;
     }
   }
- 
+  */

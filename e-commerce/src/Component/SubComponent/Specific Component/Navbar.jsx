@@ -1,47 +1,37 @@
 import styles from "../SpecificComponentCSS/Navbar.module.css";
-import InputControl from "./inputControl";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import menu from "../../../Images/menu.webp";
-import profile from "../../../Images/userprofile.avif";
-import logout from "../../../Images/logout.png";
+// import menu from "../../../Images/menu.webp";
+// import profile from "../../../Images/userprofile.avif";
+// import logout from "../../../Images/logout.png";
 
 const Navbar = (props) => {
   const totalQuantity = useSelector((state) => state.allCart.totalQuantity);
   return (
     <div>
       <header>
-        <nav className={styles.navbar}>
-          <button className={styles.menubtn}>
-            <img src={menu} alt="" height="40px" onClick={props.menuShow} />
+        <div className={styles.navbar}>
+          <button className={styles.btn } onClick={props.menuShow}>
+            Home
           </button>
           <h1 className={styles.header}>The Shop</h1>
           <div className={styles.usermanage}>
-            <InputControl
-              placeholder="Search"
-              className={styles.inputfield}
-              onChange={props.ChangeHandler}
-            />
             <NavLink to="/userprofile">
-              <button style={{ height: "54px", cursor: "pointer" }}>
-                <img src={profile} alt="" height="50px" />
+              <button className={styles.btn}>
+                Profile
               </button>
             </NavLink>
-            <img
-              src="https://cdn.iconscout.com/icon/premium/png-512-thumb/cart-41-95778.png?f=avif&w=256"
-              alt=""
-              height="50px"
-            />
-            <button className={styles.logoutbtn} onClick={props.logoutHandler}>
-              <img src={logout} alt="" height="40px" />
+            <NavLink to="/cartitem">
+            <button onClick={props.cartShow} className={styles.cartbtn}>
+              <span>Cart</span>
+              <span className={styles.totalquantity}>{totalQuantity}</span>
+            </button>
+            </NavLink>
+            <button className={styles.btn} onClick={props.logoutHandler} >
+             Logout
             </button>
           </div>
-        </nav>
-        <NavLink to="/cartitem">
-          <button className={styles.store} onClick={props.cartShow}>
-            {totalQuantity}
-          </button>
-        </NavLink>
+        </div>
       </header>
     </div>
   );

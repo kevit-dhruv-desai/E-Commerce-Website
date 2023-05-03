@@ -62,14 +62,7 @@ transform: scale(1.2);
   width: 80px;
 } 
 
-/* .main-img {
-  height: 750px;
-  width: 750px;
-  border-radius: 10px;
-}
-.decorate{
-  border: 1px solid red;
-} */
+
 /* For screens smaller than 768px */
 @media (max-width: 767px) {
   .productdetail {
