@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  min-height: 968px;
+  min-height: 1082px; 
 }
 
 .formcontainer {
@@ -38,6 +38,10 @@
 }
 .city{
   height: 35px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.city:hover{
   border: none;
 }
 .citycontainer{

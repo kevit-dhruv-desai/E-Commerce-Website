@@ -26,7 +26,7 @@
   padding: 40px;
   row-gap: 30px;
   background-color: rgb(9, 24, 28);
-  height: 968px;
+  height: 1082px;
   overflow: scroll;
   align-items: center;
   color: white;
@@ -80,11 +80,18 @@
   padding: 10px;
   font-weight: bold;
 }
+.orderbtn:active{
+  transform: scale(1.2);
+}
 .nocart {
   font-size: 35px;
   position: fixed;
   top: 484px;
   color: red;
+}
+.commonbtn:active{
+  transform: scale(1.2);
+
 }
 
 /* For screens smaller than 768px */

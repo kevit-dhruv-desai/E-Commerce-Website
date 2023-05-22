@@ -2,9 +2,9 @@ import InputControl from "../../SubComponent/Specific Component/inputControl";
 import { React, useState, useEffect } from "react";
 import styles from "../PageCSS/Login.module.css";
 import Button from "../../SubComponent/Specific Component/Button";
-import { NavLink,useNavigate} from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {emailInfo, passwordInfo} from "../../../Featue/loginslice";
+import { emailInfo, passwordInfo } from "../../../Featue/loginslice";
 
 const Login = () => {
   // const [email, setEmail] = useState("");
@@ -12,10 +12,10 @@ const Login = () => {
   // const [password, setPassword] = useState("");
   const [passwordValid, setPasswordValid] = useState(true);
   const navigate = useNavigate();
- const email = useSelector((state)=> state.logininfo.email);
- const password = useSelector((state)=> state.logininfo.password);
- const dispatch = useDispatch();
-
+  const email = useSelector((state) => state.logininfo.email);
+  const password = useSelector((state) => state.logininfo.password);
+  const dispatch = useDispatch();
+  const[error, setError]=useState(false);
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -34,6 +34,7 @@ const Login = () => {
     }
 
     setEmailValid(validateEmail(event.target.value));
+    setError(false)
   };
 
   const handlePasswordChange = (event) => {
@@ -43,10 +44,16 @@ const Login = () => {
     }
 
     setPasswordValid(validatePassword(event.target.value));
+    setError(false)
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (email.length === 0 && password.length === 0) {
+      setEmailValid(false);
+      setPasswordValid(false);
+      setError(true)
+    }else{
     const users = JSON.parse(localStorage.getItem("users")) || [];
 
     const user = users.find(
@@ -54,25 +61,25 @@ const Login = () => {
     );
 
     if (user) {
-      localStorage.setItem("email", email)
-      localStorage.setItem("password", password)
+      localStorage.setItem("email", email);
+      localStorage.setItem("password", password);
       navigate("/productlist");
     } else {
-      alert("Invalid email or password");
+      setError(true)
     }
-  };
+  }};
 
   useEffect(() => {
-    window.history.pushState(null,window.location.pathname);
-    window.addEventListener('popstate', BackButton);
+    window.history.pushState(null, window.location.pathname);
+    window.addEventListener("popstate", BackButton);
     return () => {
-      window.removeEventListener('popstate', BackButton);
+      window.removeEventListener("popstate", BackButton);
     };
   }, []);
 
   const BackButton = (e) => {
     e.preventDefault();
-    window.history.pushState(null,window.location.pathname);
+    window.history.pushState(null, window.location.pathname);
   };
 
   return (
@@ -98,6 +105,7 @@ const Login = () => {
             {!passwordValid && (
               <div className={styles.error}>Invalid password</div>
             )}
+            {error && (<div className={styles.error}>Invalid email or password</div>)}
             <Button
               content="Login"
               type="submit"
@@ -106,7 +114,7 @@ const Login = () => {
             <p>
               Already have an account?{" "}
               <span>
-                <NavLink className={styles.navlink} to="/signup">
+                <NavLink className={"styles.navlink"} to="/signup">
                   Sign Up
                 </NavLink>
               </span>

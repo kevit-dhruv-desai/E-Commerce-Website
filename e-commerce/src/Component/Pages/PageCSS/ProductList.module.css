@@ -12,6 +12,9 @@
   width: 200px;
   height: 290px;
 }
+.image:active{
+  transform: scale(1.1);
+}
 .mainproductcontent {
   display: grid;
   grid-template-columns: auto auto auto auto;
@@ -21,11 +24,14 @@
 }
 .itemsection {
   border: 1px solid rgb(40, 39, 39);
-  background-color:whitesmoke;
+  background-color:rgba(196, 198, 188, 0.86);
   border-radius: 20px;
   display: flex;
   padding: 20px 20px;
   column-gap: 30px;
+}
+.itemsection:hover{
+  transform: scale(1.05);
 }
 .productinfo {
   display: flex;
@@ -44,6 +50,12 @@
     height: 35px;
     border-radius: 15px;
     cursor: pointer;
+}
+.addcart:active{
+  transform: scale(1.1);
+}
+.addcart:hover{
+  text-decoration: underline;
 }
 .price{
     border: 1px solid black;
@@ -110,6 +122,9 @@ ul{
   background-color: rgba(5, 3, 7, 0.446);
   font-size: 15px;
   color: white;
+}
+.selectbtn:active{
+  transform: scale(1.05);
 }
 
 /* .optioncontent {

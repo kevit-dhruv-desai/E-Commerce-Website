@@ -4,8 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 968px;
-  min-height: 968px;
+  min-height: 1082px;
 }
 
 .userinfo {
@@ -32,6 +31,13 @@ table {
   min-width: 300px;
   justify-content: space-evenly;
   gap: 25px;
+}
+.userbtn:active{
+  transform: scale(1.2);
+}
+.userbtn:hover{
+  text-decoration: underline;
+  text-decoration-color: whitesmoke;
 }
 
 .userbtn button {

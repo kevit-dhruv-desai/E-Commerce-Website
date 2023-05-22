@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 968px;
+  min-height: 1082px;
   text-align: center;
 }
 
@@ -34,4 +34,6 @@
 }
 .error{
   color: red;
+  font-size: 17px;
 }
+

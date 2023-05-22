@@ -116,8 +116,8 @@ const navigate = useNavigate();
           <img
             src={userphoto}
             alt="userphoto"
-            height="300px"
-            width="300px"
+            height="280px"
+            width="280px"
           ></img>
           <div>
             <table>

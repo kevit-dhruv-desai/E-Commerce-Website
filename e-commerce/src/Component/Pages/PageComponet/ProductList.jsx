@@ -1,11 +1,14 @@
 import { useEffect, useState, useRef, useMemo } from "react";
 import styles from "../PageCSS/ProductList.module.css";
 import loader from "../../../Images/loader.gif";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../../Featue/CartSlice";
+import { useDispatch} from "react-redux";
+import { addToCart} from "../../../Featue/CartSlice";
 import { NavLink, useNavigate } from "react-router-dom";
 import InputControl from "../../SubComponent/Specific Component/inputControl";
 import Navbar from "../../SubComponent/Specific Component/Navbar";
+import { emailInfo, passwordInfo } from "../../../Featue/loginslice";
+
+
 
 const ProductList = () => {
   const [productData, setProductData] = useState([]);
@@ -14,10 +17,11 @@ const ProductList = () => {
   const [search, setSearch] = useState("");
   const [showMenu, setShowMenu] = useState(false);
   const [showCart, setShowCart] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  // const [page, setPage] = useState(1);
+  
   useEffect(() => {
     async function productDataList() {
       setIsLoading(true);
@@ -30,6 +34,24 @@ const ProductList = () => {
     productDataList();
     setTimeout(productDataList, 2000);
   }, []);
+
+  // function handleScroll() {
+
+  //   console.log(document.documentElement.scrollTop);
+  
+  //   if (
+  //     window.innerHeight + document.documentElement.scrollTop ===
+  //     document.documentElement.offsetHeight
+  //   ) {
+  //     setIsLoading(true);
+  //     setPage((prevPage) => prevPage + 1);
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, []);
 
   useEffect(() => {
     const handleBackButton = (event) => {
@@ -65,7 +87,7 @@ const ProductList = () => {
 
   const productFilterData = useMemo(() => {
     return productData.filter((data) => {
-      if (selectedCategory === "All") {
+      if (selectedCategory === "all") {
         return (
           data.category.toLowerCase().includes(search) ||
           data.title.toLowerCase().includes(search)
@@ -87,12 +109,14 @@ const ProductList = () => {
     return setShowCart(!showCart);
   }
 
-  function handleCategoryClick(category) {
-    setSelectedCategory(category);
+  function handleCategoryClick(event) {
+    setSelectedCategory(event.target.value)
   }
 
   function logoutHandler() {
     navigate("/");
+    dispatch(emailInfo(""))
+    dispatch(passwordInfo(""))
   }
 
   return (
@@ -101,7 +125,7 @@ const ProductList = () => {
         menuShow={menuShow}
         ChangeHandler={ChangeHandler}
         logoutHandler={logoutHandler}
-        cartShow={cartShow}
+        cartShow={cartShow} 
       />
       <div className={styles.maincontainer}>
         <div className={styles.searchcontainer}>
@@ -110,39 +134,38 @@ const ProductList = () => {
             className={styles.inputfield}
             onChange={ChangeHandler}
           />
-          <select className={styles.selectbtn}>
+          <select className={styles.selectbtn} onChange={handleCategoryClick}>
             <option
-              value="All Category"
+              value="all"
               className={styles.optioncontent}
-              onClick={() => handleCategoryClick("All")}
+             
             >
               All Category
             </option>
             <option
               value="men's clothing"
               className={styles.optioncontent}
-              onClick={() => handleCategoryClick("men's clothing")}
+             
             >
               Men's Clothing
             </option>
             <option
               value="electronics"
               className={styles.optioncontent}
-              onClick={() => handleCategoryClick("electronics")}
+            
             >
               Electronics
             </option>
             <option
               value="women's clothing"
               className={styles.optioncontent}
-              onClick={() => handleCategoryClick("women's clothing")}
             >
               Women's Clothing
             </option>
             <option
               value="jewelery"
               className={styles.optioncontent}
-              onClick={() => handleCategoryClick("jewelery")}
+
             >
               Jewelery
             </option>

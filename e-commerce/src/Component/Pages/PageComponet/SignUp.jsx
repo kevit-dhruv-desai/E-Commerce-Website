@@ -89,6 +89,9 @@ const SignUp = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if(firstname.length === 0 || lastname.length === 0 || email.length === 0 || password.length === 0 || mobilenumber.length === 0){
+      alert("Enter full details")
+    }else{
     if (
       firstnameValid &&
       lastnameValid &&
@@ -121,7 +124,7 @@ const SignUp = () => {
       setPassword("");
       setMobileNumber("");
     }
-  };
+  }};
 
   return (
     <div className={styles.maincontainer}>

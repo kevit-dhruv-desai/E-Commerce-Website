@@ -6,6 +6,7 @@ import {
 } from "../../../Featue/CartSlice";
 import { decreaseQuantity } from "../../../Featue/CartSlice";
 import remove from "../../../Images/remove.png";
+import { useNavigate } from "react-router-dom";
 
 const CartItem = () => {
   const data = useSelector((state) => state.allCart.cart);
@@ -13,9 +14,10 @@ const CartItem = () => {
   const totalPrice = useSelector((state) => state.allCart.totalPrice);
   const dispatch = useDispatch();
   console.log(data);
+  const navigate = useNavigate();
 
  function handlePlaceOrder(){
-    window.location.href = "/checkout"
+    navigate("/checkout")
   }
 
   return (
@@ -37,17 +39,18 @@ const CartItem = () => {
                   <div>{items.title}</div>
                   <span>Price: ${items.price}</span>
                   <div className={styles.quantitycontent}>
-                    <button onClick={() => dispatch(increaseQuantity(items))}>
+                    <button onClick={() => dispatch(increaseQuantity(items))} className={styles.commonbtn}>
                       +
                     </button>
                     <span>Quantity: {items.quantity}</span>
-                    <button onClick={() => dispatch(decreaseQuantity(items))}>
+                    <button onClick={() => dispatch(decreaseQuantity(items))} className={styles.commonbtn}>
                       -
                     </button>
                     <button
                       onClick={() => {
                         dispatch(removeFromCart(items));
                       }}
+                      className={styles.commonbtn}
                     >
                       <img
                         src={remove}
