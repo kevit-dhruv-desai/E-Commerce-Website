@@ -57,6 +57,14 @@
 .addcart:hover{
   text-decoration: underline;
 }
+.msg{
+  background-color: rgb(69, 57, 57);
+  color: black;
+  padding: 10px;
+  position: fixed;
+  top: 525px;
+  height: 40px
+}
 .price{
     border: 1px solid black;
     text-align: center;

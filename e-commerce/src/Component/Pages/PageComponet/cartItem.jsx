@@ -7,6 +7,7 @@ import {
 import { decreaseQuantity } from "../../../Featue/CartSlice";
 import remove from "../../../Images/remove.png";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../../SubComponent/Specific Component/Navbar";
 
 const CartItem = () => {
   const data = useSelector((state) => state.allCart.cart);
@@ -22,6 +23,7 @@ const CartItem = () => {
 
   return (
     <>
+    <Navbar></Navbar>
       <section className={styles.section}>
         <h1 className={styles.heading}>Cart Item</h1>
         {data.map((items) => (

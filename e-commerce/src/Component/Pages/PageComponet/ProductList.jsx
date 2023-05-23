@@ -18,6 +18,7 @@ const ProductList = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [message,setMessage] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // const [page, setPage] = useState(1);
@@ -173,9 +174,9 @@ const ProductList = () => {
         </div>
         {dataHide && (
           <div className={styles.mainproductcontent}>
-            {productFilterData.length === 0 && (
+            {/* {productFilterData.length === 0 && (
               <p className={styles.paragraph}>Not Data Found.</p>
-            )}
+            )} */}
             {productFilterData.map((item) => {
               return (
                 <div key={item.id}>
@@ -196,7 +197,11 @@ const ProductList = () => {
                       <button
                         className={styles.addcart}
                         onClick={() => {
-                          return dispatch(addToCart(item));
+                          dispatch(addToCart(item));
+                          setMessage(true)
+                          setTimeout(() => {
+                            setMessage(false)
+                          }, 2000);
                         }}
                       >
                         Add to cart
@@ -209,6 +214,7 @@ const ProductList = () => {
           </div>
         )}
         {isLoading && <img src={loader} alt="" className={styles.loader} />}
+        {message && <p className={styles.msg}>Item added in cart!</p>}
         {/* {showMenu && (
           <div className={styles.menubar}>
             <h1>Category:</h1>

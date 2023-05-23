@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 1082px;
+  min-height: 890px;
 }
 
 .userinfo {
@@ -69,12 +69,13 @@ table {
 }
 
 .formcontainer {
-  border: 1px solid black;
   display: flex;
   justify-content: center;
   position: absolute;
-  top: 0%;
-  left: 408px;
+  top: 33%;
+  height: 474px;
+  left: 25%;
+  
 }
 
 @media only screen and (max-width: 768px) {

@@ -4,6 +4,7 @@ import loader from "../../../Images/loader.gif";
 import { addToCart } from "../../../Featue/CartSlice";
 import { useDispatch } from "react-redux";
 import "../PageCSS/ProductDetails.css";
+import Navbar from "../../SubComponent/Specific Component/Navbar";
 
 const ProductDetails = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -27,6 +28,8 @@ const ProductDetails = () => {
   }, [id]);
 
   return (
+    <>
+    <Navbar></Navbar>
     <div>
       <div className="productcontainer">
         {isLoading && <img src={loader} alt="" className="loading" />}
@@ -69,6 +72,7 @@ const ProductDetails = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 export default ProductDetails;

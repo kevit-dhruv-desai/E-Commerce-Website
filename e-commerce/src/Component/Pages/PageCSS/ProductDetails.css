@@ -1,5 +1,5 @@
  .productdetail {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
   column-gap: 50px;
   padding: 80px;
@@ -7,9 +7,10 @@
   margin: 28px 28px;
   border-radius: 10px;
   color: white;
+  overflow: hidden;
+  box-shadow: 3px 4px 5px 5px #000000ac;;
 }
 .productcontainer {
-  height: 1082px;
   background-color: #41554dd8;
   display: flex;
   justify-content: center;
