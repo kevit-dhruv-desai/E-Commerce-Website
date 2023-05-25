@@ -1,10 +1,11 @@
-/* Desktop layout */
+
 .usersection {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 890px;
+  min-height: 893px;
+  background-color: #030a0d;
 }
 
 .userinfo {
@@ -15,8 +16,11 @@
   min-height: 700px;
   border-radius: 10px;
   padding: 30px;
-  background-color: rgba(148, 201, 206, 0.73);
+  background-color: rgba(19, 14, 19, 0.73);
   gap: 25px;
+  /* box-shadow: 3px 3px 15px 8px #444343ad; */
+  box-shadow: 0px 10px 20px -5px rgba(115,115,115,0.75), -10px 0 20px -5px rgba(115,115,115,0.75);
+  color: white;
 }
 
 table {
@@ -32,10 +36,10 @@ table {
   justify-content: space-evenly;
   gap: 25px;
 }
-.userbtn:active{
+.userbtn:active {
   transform: scale(1.2);
 }
-.userbtn:hover{
+.userbtn:hover {
   text-decoration: underline;
   text-decoration-color: whitesmoke;
 }
@@ -48,6 +52,7 @@ table {
   font-size: 20px;
   border-radius: 10px;
   text-align: center;
+  cursor: pointer;
 }
 
 .editform {
@@ -59,6 +64,7 @@ table {
   flex-direction: column;
   row-gap: 40px;
   text-align: center;
+  box-shadow: 3px 4px 5px 5px #000000ac;
 }
 
 .forminput {
@@ -74,14 +80,12 @@ table {
   position: absolute;
   top: 33%;
   height: 474px;
-  left: 25%;
-  
+  left: 22%;
 }
 
 @media only screen and (max-width: 768px) {
   .usersection {
     min-height: auto;
-   
   }
 
   .userinfo {

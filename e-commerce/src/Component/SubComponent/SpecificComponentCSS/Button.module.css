@@ -8,7 +8,14 @@
   font-weight: bold;
   border: 1px solid rgb(94, 94, 94);
   cursor: pointer;
+  box-shadow: 1px 4px 3px 4px rgb(48, 48, 48);
 }
-.commonbutton:active{
+.commonbutton:active {
   transform: scale(1.1);
 }
+.commonbutton:hover{
+  text-decoration: underline;
+  box-shadow: none;
+
+}
+box-shadow: none;

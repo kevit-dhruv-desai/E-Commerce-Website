@@ -3,10 +3,10 @@ import cardSlice from "../Featue/CartSlice";
 import loginslice from "../Featue/loginslice";
 
 const store = configureStore({
-    reducer: {
-      allCart:cardSlice,
-      logininfo:loginslice
-    }
-  })
-  
-  export default store;
+  reducer: {
+    allCart: cardSlice,
+    logininfo: loginslice,
+  },
+});
+
+export default store;

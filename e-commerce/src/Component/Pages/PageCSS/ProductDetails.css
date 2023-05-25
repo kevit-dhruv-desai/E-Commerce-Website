@@ -1,52 +1,51 @@
- .productdetail {
-  /* border: 1px solid black; */
+.productdetail {
+  border: 1px solid black;
   display: flex;
-  column-gap: 50px;
-  padding: 80px;
-  background-color: #2e2d2c45;
-  margin: 28px 28px;
+  column-gap: 40px;
+  padding: 30px;
+  background-color:white;
   border-radius: 10px;
-  color: white;
+  color:black;
   overflow: hidden;
-  box-shadow: 3px 4px 5px 5px #000000ac;;
+  box-shadow: 3px 4px 5px 5px #000000ac;
+  height: 800px;
+  width: 1300px;
 }
 .productcontainer {
   background-color: #41554dd8;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 893px;
 }
 .productinfo {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   row-gap: 40px;
-  margin: 70px;
-}
-.productinfo h2 {
-  border: 1px solid white;
-  width: 150px;
-  text-align: center;
-  padding: 5px 5px;
-  border-radius: 5px;
-  background-color: white;
-  color: black;
 }
 .image-container {
   display: flex;
   column-gap: 20px;
-  justify-content: center;
-  align-items: center;
 }
+.productinfo h2 {
+  width: 150px;
+  text-align: center;
+  padding: 5px 5px;
+  border-radius: 5px;
+  background-color:rgba(191, 186, 186, 0.96);
+  color: black;
+}
+
 .image-container img {
-  margin: 0 5px;
   cursor: pointer;
 }
-.image-container img.active{
-transform: scale(1.2);
+.image-container img.active {
+  transform: scale(1.2);
 }
 
 .crtbtn {
-  font-size: 20px;
+  font-size: 25px;
   border: 1px solid rgb(37, 37, 37);
   font-weight: bold;
   background-color: rgba(20, 19, 20, 0.747);
@@ -55,9 +54,8 @@ transform: scale(1.2);
   height: 60px;
   border-radius: 10px;
 }
-.crtbtn:active{
+.crtbtn:active {
   transform: scale(1.1);
-
 }
 .loading {
   position: fixed;
@@ -65,35 +63,34 @@ transform: scale(1.2);
   left: 50%;
   height: 80px;
   width: 80px;
-} 
+}
 
-
-/* For screens smaller than 768px */
-@media (max-width: 767px) {
+@media only screen and (max-width: 652px) {
   .productdetail {
     flex-direction: column;
-    padding: 30px;
+    margin-top: 120px;
   }
-  .productinfo {
-    margin: 20px;
+  .productcontainer {
+    height: 100%;
+    width: 100%;
   }
   .main-img {
-    height: 350px;
-    width: 350px;
+    height: auto;
+    width: auto;
   }
 }
 
-/* For screens larger than 768px */
-@media (min-width: 768px) {
+@media only screen and (max-width: 1281px) {
   .productdetail {
-    padding: 80px;
-    margin: 28px 28px;
-  }
-  .productinfo {
-    margin: 70px;
+    padding: 30px;
+    margin-top: 120px;
+    overflow: visible;
+    height: auto;
+    margin-left: 40px;
+    margin-right: 40px;
   }
   .main-img {
-    height: 750px;
-    width: 750px;
+    height: 250px;
+    width: 400px;
   }
 }

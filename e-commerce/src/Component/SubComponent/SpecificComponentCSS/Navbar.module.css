@@ -2,9 +2,8 @@
   display: flex;
   justify-content: space-between;
   border: 1px solid black;
-  background-color: rgb(20, 20, 20);
+  background-color: rgba(19, 47, 29, 0.81);
   padding: 10px;
-  height: 75px;
 }
 .btn {
   width: 60px;
@@ -16,6 +15,9 @@
   height: 54px;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 2px 2px 3px 3px rgb(8, 6, 6);
+  
 }
 .btn:active {
   transform: scale(1.1);
@@ -23,6 +25,7 @@
 
 .btn:hover {
   text-decoration: underline;
+  box-shadow: none;
 }
 .image {
   height: 50px;
@@ -43,17 +46,19 @@
   text-align: center;
   font-size: 25px;
   color: rgb(0, 0, 0);
-  /* padding: 2px; */
   height: 54px;
   border: none;
   overflow: hidden;
   border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 2px 2px 3px 3px rgb(8, 6, 6);
 }
 .cartbtn:active {
   transform: scale(1.1);
 }
 .cartbtn:hover {
   text-decoration: underline;
+  box-shadow: none;
 }
 .totalquantity {
   border-radius: 30%;

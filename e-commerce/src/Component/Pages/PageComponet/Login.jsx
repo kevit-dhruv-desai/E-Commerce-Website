@@ -7,15 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { emailInfo, passwordInfo } from "../../../Featue/loginslice";
 
 const Login = () => {
-  // const [email, setEmail] = useState("");
   const [emailValid, setEmailValid] = useState(true);
-  // const [password, setPassword] = useState("");
   const [passwordValid, setPasswordValid] = useState(true);
   const navigate = useNavigate();
   const email = useSelector((state) => state.logininfo.email);
   const password = useSelector((state) => state.logininfo.password);
   const dispatch = useDispatch();
-  const[error, setError]=useState(false);
+  const [error, setError] = useState(false);
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -29,22 +27,27 @@ const Login = () => {
 
   const handleEmailChange = (event) => {
     dispatch(emailInfo(event.target.value));
+  };
+  const handleEmailBlur = () => {
     if (email.length === 0) {
       setEmailValid(false);
+    } else {
+      setEmailValid(validateEmail(email));
+      setError(false);
     }
-
-    setEmailValid(validateEmail(event.target.value));
-    setError(false)
   };
 
   const handlePasswordChange = (event) => {
     dispatch(passwordInfo(event.target.value));
+  };
+
+  const handlePasswordBlur = () => {
     if (password.length === 0) {
       setPasswordValid(false);
+    } else {
+      setPasswordValid(validatePassword(password));
+      setError(false);
     }
-
-    setPasswordValid(validatePassword(event.target.value));
-    setError(false)
   };
 
   const handleSubmit = (event) => {
@@ -52,22 +55,23 @@ const Login = () => {
     if (email.length === 0 && password.length === 0) {
       setEmailValid(false);
       setPasswordValid(false);
-      setError(true)
-    }else{
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-
-    const user = users.find(
-      (user) => user.email === email && user.password === password
-    );
-
-    if (user) {
-      localStorage.setItem("email", email);
-      localStorage.setItem("password", password);
-      navigate("/productlist");
+      setError(true);
     } else {
-      setError(true)
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+
+      const user = users.find(
+        (user) => user.email === email && user.password === password
+      );
+
+      if (user) {
+        localStorage.setItem("email", email);
+        localStorage.setItem("password", password);
+        navigate("/productlist");
+      } else {
+        setError(true);
+      }
     }
-  }};
+  };
 
   useEffect(() => {
     window.history.pushState(null, window.location.pathname);
@@ -83,46 +87,53 @@ const Login = () => {
   };
 
   return (
-    <div className={styles.maincontainer}>
-      <div className={styles.flexcontainer}>
-        <div className={styles.formcontainer}>
-          <form className={styles.loginform} onSubmit={handleSubmit}>
-            <h1>Login</h1>
-            <InputControl
-              label="Email"
-              placeholder="Enter email address"
-              value={email}
-              onChange={handleEmailChange}
-            />
-            {!emailValid && <div className={styles.error}>Invalid email</div>}
-            <InputControl
-              label="Password"
-              placeholder="Enter password"
-              value={password}
-              onChange={handlePasswordChange}
-              type="password"
-            />
-            {!passwordValid && (
-              <div className={styles.error}>Invalid password</div>
-            )}
-            {error && (<div className={styles.error}>Invalid email or password</div>)}
-            <Button
-              content="Login"
-              type="submit"
-              disabled={!emailValid || !passwordValid}
-            />
-            <p>
-              Already have an account?{" "}
-              <span>
-                <NavLink className={"styles.navlink"} to="/signup">
-                  Sign Up
-                </NavLink>
-              </span>
-            </p>
-          </form>
+    <>
+      <div className={styles.maincontainer}>
+        <div className={styles.flexcontainer}>
+          <h1 className={styles.title}>WELCOME TO SHOP</h1>
+          <div className={styles.formcontainer}>
+            <form className={styles.loginform} onSubmit={handleSubmit}>
+              <h1>Login</h1>
+              <InputControl
+                label="Email"
+                placeholder="Enter email address"
+                value={email}
+                onChange={handleEmailChange}
+                onBlur={handleEmailBlur}
+              />
+              {!emailValid && <div className={styles.error}>Invalid email</div>}
+              <InputControl
+                label="Password"
+                placeholder="Enter password"
+                value={password}
+                onChange={handlePasswordChange}
+                type="password"
+                onBlur={handlePasswordBlur}
+              />
+              {!passwordValid && (
+                <div className={styles.error}>Invalid password</div>
+              )}
+              {error && (
+                <div className={styles.error}>Invalid email or password</div>
+              )}
+              <Button
+                content="Login"
+                type="submit"
+                disabled={!emailValid || !passwordValid}
+              />
+              <p>
+                Already have an account?{" "}
+                <span>
+                  <NavLink className={"styles.navlink"} to="/signup">
+                    Sign Up
+                  </NavLink>
+                </span>
+              </p>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 export default Login;

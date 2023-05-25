@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import loader from "../../../Images/loader.gif";
 import { addToCart } from "../../../Featue/CartSlice";
@@ -13,6 +13,7 @@ const ProductDetails = () => {
   const [product, setProduct] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getProductDetails() {
@@ -27,10 +28,12 @@ const ProductDetails = () => {
     getProductDetails();
   }, [id]);
 
+  function menuShow() {
+    navigate("/productlist");
+  }
   return (
     <>
-    <Navbar></Navbar>
-    <div>
+      <Navbar menuShow={menuShow} />
       <div className="productcontainer">
         {isLoading && <img src={loader} alt="" className="loading" />}
         {!isLoading && (
@@ -71,7 +74,6 @@ const ProductDetails = () => {
           </div>
         )}
       </div>
-    </div>
     </>
   );
 };

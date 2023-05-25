@@ -12,6 +12,7 @@ const InputControl = (props) => {
         value={props.value}
         onChange={props.onChange}
         className={props.className}
+        onBlur={props.onBlur}
       />
     </div>
   );

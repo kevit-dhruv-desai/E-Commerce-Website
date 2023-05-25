@@ -1,7 +1,7 @@
 import InputControl from "../../SubComponent/Specific Component/inputControl";
 import styles from "../PageCSS/SignUP.module.css";
 import Button from "../../SubComponent/Specific Component/Button";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { React, useState } from "react";
 import city from "../../../city/CityData";
 
@@ -16,6 +16,7 @@ const SignUp = () => {
   const [passwordValid, setPasswordValid] = useState(true);
   const [mobilenumber, setMobileNumber] = useState("");
   const [mobilenumberValid, setMobileNumberValid] = useState(true);
+  const navigate = useNavigate();
 
   const validateFirstName = (firstname) => {
     const nameRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
@@ -45,86 +46,118 @@ const SignUp = () => {
 
   const handleFirstNameChange = (event) => {
     setFirstName(event.target.value);
+  };
+
+  const handleFirstNameBlur = () => {
     if (firstname.length === 0) {
       setFirstNameValid(false);
+    } else {
+      setFirstNameValid(validateFirstName(firstname));
     }
-    setFirstNameValid(validateFirstName(event.target.value));
   };
 
   const handleLastNameChange = (event) => {
     setLastName(event.target.value);
+  };
+
+  const handleLastNameBlur = () => {
     if (lastname.length === 0) {
       setLastNameValid(false);
+    } else {
+      setLastNameValid(validateLastName(lastname));
     }
-    setLastNameValid(validateLastName(event.target.value));
   };
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
+  };
+
+  const handleEmailBlur = () => {
     if (email.length === 0) {
       setEmailValid(false);
+    } else {
+      setEmailValid(validateEmail(email));
     }
-
-    setEmailValid(validateEmail(event.target.value));
   };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
     console.log(password);
+  };
+
+  const handlePasswordBlur = () => {
     if (password.length === 0) {
       setPasswordValid(false);
+    } else {
+      setPasswordValid(validatePassword(password));
     }
-
-    setPasswordValid(validatePassword(event.target.value));
   };
 
   const handleMobileNumberChange = (event) => {
     setMobileNumber(event.target.value);
+  };
+
+  const handleMobileNumberBlur = () => {
     if (mobilenumber.length === 0) {
       setMobileNumberValid(false);
+    } else {
+      setMobileNumberValid(validateMobileNumber(mobilenumber));
     }
-
-    setMobileNumberValid(validateMobileNumber(event.target.value));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(firstname.length === 0 || lastname.length === 0 || email.length === 0 || password.length === 0 || mobilenumber.length === 0){
-      alert("Enter full details")
-    }else{
+
     if (
-      firstnameValid &&
-      lastnameValid &&
-      emailValid &&
-      passwordValid &&
-      mobilenumberValid
+      firstname.length === 0 ||
+      lastname.length === 0 ||
+      email.length === 0 ||
+      password.length === 0 ||
+      mobilenumber.length === 0
     ) {
-      alert("Your are successfully register");
-      const users = JSON.parse(localStorage.getItem("users")) || [];
-      const user = {
-        id:Math.random(),
-        email: email,
-        password:password,
-        firstname:firstname,
-        lastname:lastname,
-        phone:mobilenumber
-      };
-      const existingUser = users.find(
-        (u) => u.email === email && u.password === password
-      );
-      if (existingUser) {
-        return;
-      } else {
-        users.push(user);
+      alert("Enter full details");
+    } else {
+      if (
+        firstnameValid &&
+        lastnameValid &&
+        emailValid &&
+        passwordValid &&
+        mobilenumberValid
+      ) {
+        alert("Your are successfully register");
+        navigate("/");
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        const user = {
+          id: Math.random(),
+          email: email,
+          password: password,
+          firstname: firstname,
+          lastname: lastname,
+          phone: mobilenumber,
+        };
+        const existingUser = users.find(
+          (u) => u.email === email && u.password === password
+        );
+        if (existingUser) {
+          return;
+        } else {
+          users.push(user);
+        }
+        localStorage.setItem("users", JSON.stringify(users));
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setPassword("");
+        setMobileNumber("");
       }
-      localStorage.setItem("users", JSON.stringify(users));
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setPassword("");
-      setMobileNumber("");
     }
-  }};
+    var selectValue = document.getElementsByClassName("city").value;
+    if (selectValue === "") {
+      alert("Please select an option.");
+      return false;
+    }
+    return true;
+  };
 
   return (
     <div className={styles.maincontainer}>
@@ -137,6 +170,7 @@ const SignUp = () => {
               placeholder="Enter your firstname"
               value={firstname}
               onChange={handleFirstNameChange}
+              onBlur={handleFirstNameBlur}
             />
             {!firstnameValid && (
               <div className={styles.error}>Invalid Firstname</div>
@@ -146,6 +180,7 @@ const SignUp = () => {
               placeholder="Enter your lastname"
               value={lastname}
               onChange={handleLastNameChange}
+              onBlur={handleLastNameBlur}
             />
             {!lastnameValid && (
               <div className={styles.error}>Invalid Lastname</div>
@@ -155,6 +190,7 @@ const SignUp = () => {
               placeholder="Enter email address"
               value={email}
               onChange={handleEmailChange}
+              onBlur={handleEmailBlur}
             />
             {!emailValid && <div className={styles.error}>Invalid email</div>}
             <InputControl
@@ -163,6 +199,7 @@ const SignUp = () => {
               value={password}
               onChange={handlePasswordChange}
               type="password"
+              onBlur={handlePasswordBlur}
             />
             {!passwordValid && (
               <div className={styles.error}>Invalid password</div>
@@ -173,6 +210,7 @@ const SignUp = () => {
               placeholder="Enter mobile number"
               value={mobilenumber}
               onChange={handleMobileNumberChange}
+              onBlur={handleMobileNumberBlur}
             />
             {!mobilenumberValid && (
               <div className={styles.error}>Invalid mobile number</div>
@@ -180,7 +218,9 @@ const SignUp = () => {
             <div className={styles.citycontainer}>
               <label for="cars">City</label>
               <select className={styles.city} required>
-                {city.map((cities)=>  <option value={cities} >{cities}</option>)}
+                {city.map((cities) => (
+                  <option value={cities}>{cities}</option>
+                ))}
               </select>
             </div>
 
