@@ -1,0 +1,119 @@
+
+.usersection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 882px;
+  background-color: #030a0d;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 700px;
+  min-height: 700px;
+  border-radius: 10px;
+  padding: 30px;
+  background-color: rgba(19, 14, 19, 0.73);
+  gap: 25px;
+  /* box-shadow: 3px 3px 15px 8px #444343ad; */
+  box-shadow: 0px 10px 20px -5px rgba(115,115,115,0.75), -10px 0 20px -5px rgba(115,115,115,0.75);
+  color: white;
+}
+
+table {
+  text-align: left;
+  height: 250px;
+  width: 400px;
+  text-align: center;
+}
+
+.userbtn {
+  display: flex;
+  min-width: 300px;
+  justify-content: space-evenly;
+  gap: 25px;
+}
+.userbtn:active {
+  transform: scale(1.2);
+}
+.userbtn:hover {
+  text-decoration: underline;
+  text-decoration-color: whitesmoke;
+}
+
+.userbtn button {
+  width: 200px;
+  height: 45px;
+  background-color: #222020f0;
+  color: white;
+  font-size: 20px;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.editform {
+  background-color: rgba(253, 253, 253, 0.988);
+  padding: 30px;
+  width: 1000px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  text-align: center;
+  box-shadow: 3px 4px 5px 5px #000000ac;
+}
+
+.forminput {
+  display: grid;
+  grid-template-columns: auto auto;
+  row-gap: 35px;
+  column-gap: 20px;
+}
+
+.formcontainer {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 33%;
+  height: 474px;
+  left: 22%;
+}
+
+@media only screen and (max-width: 768px) {
+  .usersection {
+    min-height: auto;
+  }
+
+  .userinfo {
+    width: 90%;
+    min-height: auto;
+    padding: 20px;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  .userbtn {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .userbtn button {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .editform {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .formcontainer {
+    left: 0%;
+  }
+}
