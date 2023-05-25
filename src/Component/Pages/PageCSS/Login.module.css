@@ -1,0 +1,48 @@
+.title{
+  text-align: center;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+   font-size: 50px;
+}
+
+.flexcontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 30px;
+  min-height: 968px;
+  text-align: center;
+}
+
+.formcontainer {
+  border: 1px solid black;
+  box-shadow: 3px 4px 5px 5px #000000ac;
+  width: 500px;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.897);
+  border-radius: 15px;
+}
+
+.loginform {
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+}
+
+.navlink {
+  padding: 5px;
+  text-decoration: none;
+  color: blueviolet;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.loginform p {
+  font-weight: bold;
+  font-size: 18px;
+}
+.error {
+  color: red;
+  font-size: 17px;
+}

@@ -1,0 +1,17 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+body {
+  /* background: linear-gradient(
+    to right,
+    rgba(106, 17, 203, 1),
+    rgba(37, 117, 252, 1)
+  ); */
+  background-image: url("Images/bg4.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}

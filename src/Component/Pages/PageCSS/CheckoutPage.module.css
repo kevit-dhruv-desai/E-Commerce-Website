@@ -1,0 +1,52 @@
+.checkout {
+  width: 600px;
+  text-align: center;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  font-size: 30px;
+  color: green;
+  background-color: rgba(172, 189, 187, 0.59);
+  border-radius: 10px;
+  box-shadow: 2px 3px 4px 3px black;
+}
+.checkoutcontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 968px;
+  background-color: #dfd1c5;
+}
+.backbutton {
+  width: 200px;
+  height: 40px;
+  font-size: 25px;
+  background-color: #1a0202;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: -2px 3px 1px 2px #171a1abf;
+}
+.backbutton:active{
+  transform: scale(1.07);
+}
+.backbutton:hover{
+  box-shadow: none;
+}
+@media only screen and (max-width: 628px) {
+  .checkout {
+    width: 100%;
+    height: auto;
+    font-size: 20px;
+    gap: 20px;
+  }
+
+  .backbutton {
+    width: 150px;
+    height: 30px;
+    font-size: 20px;
+  }
+}
